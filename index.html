@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Портфолио · Дарья Гиро</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1410;
+            background-image: radial-gradient(circle at 20% 30%, rgba(180, 30, 30, 0.15) 0%, transparent 60%),
+            radial-gradient(circle at 80% 70%, rgba(180, 30, 30, 0.10) 0%, transparent 50%);
+            color: #e8ddd0;
+            line-height: 1.5;
+            padding: 1.5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: #1f1814;
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+            padding: 2rem 2rem 2.5rem;
+            transition: padding 0.2s;
+            border: 2px solid #8b2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '福';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 8rem;
+            color: #6b1a1a;
+            opacity: 0.15;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+        .container::after {
+            content: '龙';
+            position: absolute;
+            bottom: -30px;
+            left: 10px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 10rem;
+            color: #7a2a1a;
+            opacity: 0.12;
+            transform: rotate(-10deg);
+            pointer-events: none;
+        }
+
+        /* ===== ВИЗИТКА ===== */
+        .header-card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #8b2a2a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(145deg, #8b1a1a, #c41e24);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f5e6c8;
+            font-size: 2.5rem;
+            font-weight: 700;
+            box-shadow: 0 12px 28px rgba(180, 30, 30, 0.4);
+            border: 4px solid #3d1a1a;
+            outline: 3px solid #8b2a2a;
+            font-family: 'Ma Shan Zheng', cursive;
+        }
+
+        .title-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .title-group h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem;
+            color: #f0e0d0;
+        }
+
+        .title-group h1 .chinese-deco {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #c41e24;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+
+        .title-group h1 span {
+            background: #2d1a14;
+            color: #e8b8a0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.15rem 1rem;
+            border-radius: 60px;
+            letter-spacing: 0.4px;
+            border: 1px solid #8b2a2a;
+        }
+
+        .title-group .subhead {
+            font-size: 0.95rem;
+            color: #c0b0a0;
+            margin-top: 0.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .title-group .subhead i {
+            color: #c41e24;
+            width: 1.4rem;
+        }
+
+        .contact-links {
+            margin-top: 0.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #d0c0b0;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: color 0.2s, transform 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .contact-links a i {
+            color: #c41e24;
+            font-size: 1rem;
+            width: 1.2rem;
+        }
+
+        .contact-links a:hover {
+            color: #e8c8b0;
+            border-bottom-color: #c41e24;
+            transform: translateY(-1px);
+        }
+
+        /* ===== ПРОЕКТЫ ===== */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #f0e0d0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title i {
+            color: #c41e24;
+            font-size: 1.6rem;
+            background: #2d1a14;
+            padding: 0.3rem 0.6rem;
+            border-radius: 16px;
+            border: 1px solid #8b2a2a;
+        }
+
+        .section-title .deco-char {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            color: #c41e24;
+            margin-left: 0.2rem;
+            opacity: 0.7;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card {
+            background: #221b16;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid #3d2a22;
+            transition: transform 0.2s ease, box-shadow 0.25s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b1a1a, #c41e24, #8b1a1a);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(180, 30, 30, 0.2);
+            border-color: #8b2a2a;
+        }
+
+        .project-card .card-deco {
+            position: absolute;
+            bottom: 6px;
+            right: 10px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: #3d2a22;
+            opacity: 0.2;
+            pointer-events: none;
+            transform: rotate(5deg);
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: #c41e24;
+            margin-bottom: 0.3rem;
+            background: #2d1a14;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: background 0.2s;
+            border: 1px solid #3d2a22;
+        }
+
+        .project-card:hover .project-icon {
+            background: #3d1a14;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.1rem;
+            color: #f0e0d0;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: #2d1a14;
+            color: #c41e24;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            align-self: flex-start;
+            border: 1px solid #8b2a2a;
+        }
+
+        .project-card p {
+            color: #c0b0a0;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .project-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.3s;
+            margin-top: 0;
+            background: #2d1a14;
+            border-radius: 12px;
+            padding: 0 0.8rem;
+            border-left: 3px solid #c41e24;
+        }
+
+        .project-details.open {
+            max-height: 350px;
+            opacity: 1;
+            padding: 0.6rem 0.8rem 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .project-details h4 {
+            font-size: 0.7rem;
+            color: #c41e24;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .project-details ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-details ul li {
+            background: #1f1814;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #d0c0b0;
+            border: 1px solid #3d2a22;
+        }
+
+        .project-details .extra-text {
+            font-size: 0.75rem;
+            color: #c0b0a0;
+            background: #1f1814;
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+            border: 1px solid #3d2a22;
+            margin: 0.2rem 0 0;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.4rem;
+            margin-top: auto;
+            padding-top: 0.4rem;
+            border-top: 1.5px solid #2d1a14;
+        }
+
+        .project-tech span {
+            background: #2d1a14;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #c0b0a0;
+            letter-spacing: 0.2px;
+            border: 1px solid #3d2a22;
+        }
+
+        .project-card .click-hint {
+            font-size: 0.55rem;
+            color: #7a6a5a;
+            margin-top: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            opacity: 0.6;
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b2a2a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid #3d2a22;
+            transition: background 0.3s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L80,100 L0,100 Z" fill="%238b1a1a" opacity="0.08"/><circle cx="70" cy="30" r="15" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .project-card:nth-child(2) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="30" cy="30" r="18" fill="%238b1a1a" opacity="0.08"/><rect x="60" y="50" width="25" height="25" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(3) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="10,70 40,20 70,70 40,90" fill="%238b1a1a" opacity="0.08"/><circle cx="50" cy="40" r="10" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(4) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="20" y="20" width="50" height="30" rx="5" fill="%238b1a1a" opacity="0.08"/><circle cx="50" cy="70" r="12" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(5) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="20,10 80,10 90,80 10,80" fill="%238b1a1a" opacity="0.08"/><circle cx="50" cy="40" r="14" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(6) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M10,50 Q30,10 50,50 T90,50" fill="none" stroke="%23c41e24" stroke-width="3" opacity="0.08"/><circle cx="50" cy="30" r="8" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(7) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="10" y="30" width="80" height="20" rx="10" fill="%238b1a1a" opacity="0.08"/><circle cx="30" cy="60" r="12" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(8) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M20,20 L80,20 L70,80 L30,80 Z" fill="%238b1a1a" opacity="0.08"/><circle cx="50" cy="50" r="10" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+        .project-card:nth-child(9) .project-img-placeholder {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="30" r="20" fill="%238b1a1a" opacity="0.08"/><rect x="30" y="60" width="40" height="15" rx="5" fill="%23c41e24" opacity="0.08"/></svg>');
+        }
+
+        .project-img-placeholder i {
+            font-size: 1.8rem;
+            color: #8b2a2a;
+            opacity: 0.5;
+            background: rgba(31, 24, 20, 0.6);
+            padding: 0.3rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== МУЗЫКАЛЬНАЯ КАРТОЧКА ===== */
+        .song-card .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="40" r="25" fill="%23c41e24" opacity="0.08"/><path d="M35,40 L55,30 L55,50 L35,40 Z" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .song-card .song-player-mini {
+            margin: 0.2rem 0 0.3rem;
+            width: 100%;
+        }
+
+        .song-card .song-player-mini audio {
+            width: 100%;
+            height: 32px;
+            border-radius: 20px;
+            background: #2d1a14;
+            outline: none;
+        }
+
+        .song-card .song-player-mini audio::-webkit-media-controls-panel {
+            background: #2d1a14;
+        }
+
+        .song-card .song-link-inline {
+            font-size: 0.7rem;
+            margin-top: 0.1rem;
+        }
+
+        .song-card .song-link-inline a {
+            color: #c41e24;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1.5px solid #8b2a2a;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .song-card .song-link-inline a:hover {
+            color: #e84a4a;
+            border-bottom-color: #c41e24;
+        }
+
+        /* ===== ДОСТИЖЕНИЯ ===== */
+        .achievements-section {
+            margin: 2.5rem 0 1.5rem;
+            padding: 1.5rem 2rem;
+            background: #1f1814;
+            border-radius: 1.5rem;
+            border: 2px solid #8b2a2a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .achievements-section .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            background: #2d1a14;
+            border-radius: 1rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid #3d2a22;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-2px);
+            border-color: #8b2a2a;
+        }
+
+        .achievement-item .ach-icon {
+            font-size: 1.4rem;
+            color: #c41e24;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .achievement-item .ach-content h4 {
+            font-size: 0.95rem;
+            color: #f0e0d0;
+            font-weight: 700;
+        }
+
+        .achievement-item .ach-content p {
+            font-size: 0.8rem;
+            color: #c0b0a0;
+            margin-top: 0.1rem;
+        }
+
+        .achievement-item .ach-content .ach-tag {
+            display: inline-block;
+            background: #1f1814;
+            color: #c41e24;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.05rem 0.6rem;
+            border-radius: 30px;
+            border: 1px solid #8b2a2a;
+            margin-top: 0.2rem;
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7a6a5a;
+            border-top: 2px solid #2d1a14;
+            padding-top: 1.5rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-note i {
+            color: #c41e24;
+            margin: 0 4px;
+        }
+
+        .footer-note .deco-footer {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1rem;
+            color: #c41e24;
+            opacity: 0.6;
+            margin-left: 0.3rem;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 820px) {
+            .container {
+                padding: 1.5rem 1.5rem 2rem;
+            }
+            .title-group h1 {
+                font-size: 1.7rem;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0.8rem 0.5rem;
+            }
+            .container {
+                padding: 1rem 0.8rem;
+                border-radius: 1.5rem;
+            }
+            .header-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            .title-group h1 {
+                font-size: 1.4rem;
+            }
+            .title-group .subhead {
+                font-size: 0.85rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
+            .contact-links {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .project-img-placeholder {
+                height: 60px;
+            }
+            .project-card {
+                padding: 0.7rem 0.8rem 0.9rem;
+            }
+            .project-card h3 {
+                font-size: 0.95rem;
+            }
+            .project-card p {
+                font-size: 0.7rem;
+            }
+            .achievements-section {
+                padding: 1rem 1.2rem;
+            }
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            .container::before,
+            .container::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .title-group h1 {
+                font-size: 1.2rem;
+            }
+            .project-card {
+                padding: 0.6rem 0.7rem 0.8rem;
+            }
+            .project-img-placeholder {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ВИЗИТКА -->
+    <div class="header-card">
+        <div class="avatar">
+            吉
+        </div>
+        <div class="title-group">
+            <h1>
+                <span class="chinese-deco">吉罗</span> Дарья Гиро
+                <span>junior dev</span>
+            </h1>
+            <div class="subhead">
+                <span><i class="fas fa-graduation-cap"></i> Курсы · 2025</span>
+                <span><i class="fas fa-map-pin"></i> Минск</span>
+                <span><i class="fas fa-code"></i> 15+ проектов</span>
+            </div>
+            <div class="contact-links">
+                <a href="#"><i class="fab fa-github"></i> github/darya-giro</a>
+                <a href="#"><i class="fab fa-linkedin"></i> linkedin/in/darya-giro</a>
+                <a href="#"><i class="fas fa-envelope"></i> darya@portfolio.dev</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОРТФОЛИО -->
+    <div class="section-title">
+        <i class="fas fa-folder-open"></i>
+        Мои проекты
+        <span class="deco-char">作</span>
+        <span style="font-size: 0.7rem; font-weight: 400; color: #7a6a5a; margin-left: 0.2rem;">(кликни по карточке)</span>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+        <!-- 1 -->
+        <div class="project-card" data-project="weather">
+            <div class="project-img-placeholder"><i class="fas fa-cloud-sun"></i></div>
+            <div class="project-icon"><i class="fas fa-cloud-sun"></i></div>
+            <h3>Виджет погоды</h3>
+            <span class="project-tag">курсовой</span>
+            <p>Геолокация, анимации, 5-дневный прогноз.</p>
+            <div class="project-details" id="details-weather">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>API</li>
+                    <li>Геолокация</li>
+                    <li>Анимации</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> OpenWeather API, кэширование.</div>
+            </div>
+            <div class="project-tech">
+                <span>JS</span>
+                <span>OpenWeather</span>
+                <span>CSS</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">风</div>
+        </div>
+
+        <!-- 2 -->
+        <div class="project-card" data-project="tasks">
+            <div class="project-img-placeholder"><i class="fas fa-tasks"></i></div>
+            <div class="project-icon"><i class="fas fa-tasks"></i></div>
+            <h3>Менеджер задач</h3>
+            <span class="project-tag">веб-приложение</span>
+            <p>To-Do, фильтрация, тёмная тема, drag-and-drop.</p>
+            <div class="project-details" id="details-tasks">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>React Hooks</li>
+                    <li>LocalStorage</li>
+                    <li>Drag-and-Drop</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Сортировка, поиск, экспорт JSON.</div>
+            </div>
+            <div class="project-tech">
+                <span>React</span>
+                <span>LocalStorage</span>
+                <span>Tailwind</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">任</div>
+        </div>
+
+        <!-- 3 -->
+        <div class="project-card" data-project="recipes">
+            <div class="project-img-placeholder"><i class="fas fa-utensils"></i></div>
+            <div class="project-icon"><i class="fas fa-utensils"></i></div>
+            <h3>Рецепты дня</h3>
+            <span class="project-tag">адаптивный</span>
+            <p>Поиск по ингредиентам, таймер, избранное.</p>
+            <div class="project-details" id="details-recipes">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Vue 3</li>
+                    <li>Pinia</li>
+                    <li>SCSS</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> TheMealDB, LocalStorage.</div>
+            </div>
+            <div class="project-tech">
+                <span>Vue 3</span>
+                <span>Pinia</span>
+                <span>SCSS</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">食</div>
+        </div>
+
+        <!-- 4 -->
+        <div class="project-card" data-project="currency">
+            <div class="project-img-placeholder"><i class="fas fa-calculator"></i></div>
+            <div class="project-icon"><i class="fas fa-calculator"></i></div>
+            <h3>Калькулятор валют</h3>
+            <span class="project-tag">практика</span>
+            <p>Конвертер, график, история операций.</p>
+            <div class="project-details" id="details-currency">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>TypeScript</li>
+                    <li>Chart.js</li>
+                    <li>Fetch API</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> 30+ валют, график за неделю.</div>
+            </div>
+            <div class="project-tech">
+                <span>TS</span>
+                <span>Chart.js</span>
+                <span>Fetch</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">币</div>
+        </div>
+
+        <!-- 5 -->
+        <div class="project-card" data-project="store">
+            <div class="project-img-placeholder"><i class="fas fa-store"></i></div>
+            <div class="project-icon"><i class="fas fa-store"></i></div>
+            <h3>Магазин растений</h3>
+            <span class="project-tag">интернет-магазин</span>
+            <p>Каталог, корзина, форма заказа, галерея.</p>
+            <div class="project-details" id="details-store">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>React Router</li>
+                    <li>Context API</li>
+                    <li>CSS Modules</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Корзина, адаптивная галерея.</div>
+            </div>
+            <div class="project-tech">
+                <span>React</span>
+                <span>Router</span>
+                <span>CSS Modules</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">花</div>
+        </div>
+
+        <!-- 6 - МУЗЫКАЛЬНЫЙ ПРОЕКТ с прямым плеером -->
+        <div class="project-card song-card" data-project="music">
+            <div class="project-img-placeholder"><i class="fas fa-music"></i></div>
+            <div class="project-icon"><i class="fas fa-headphones"></i></div>
+            <h3>Песня «Life is beautiful»</h3>
+            <span class="project-tag">музыка</span>
+            <p>Инди-поп о красоте жизни.</p>
+
+            <div class="song-player-mini">
+                <audio controls preload="none" style="width:100%; height:32px; border-radius:20px; background:#2d1a14;">
+                    <source src="https://suno.com/s/T0LEmPXK9OLQuxBQ" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+            </div>
+
+            <div class="song-link-inline">
+                <a href="https://suno.com/s/T0LEmPXK9OLQuxBQ" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Слушать на Suno
+                </a>
+            </div>
+
+            <div class="project-details" id="details-music">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Написание текстов</li>
+                    <li>Вокал</li>
+                    <li>Аранжировка</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Песня создана с помощью AI, текст авторский.</div>
+            </div>
+            <div class="project-tech">
+                <span>Suno AI</span>
+                <span>Автор текста</span>
+                <span>Инди-поп</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">乐</div>
+        </div>
+
+        <!-- 7 - Новый проект: Чат-бот -->
+        <div class="project-card" data-project="chatbot">
+            <div class="project-img-placeholder"><i class="fas fa-robot"></i></div>
+            <div class="project-icon"><i class="fas fa-robot"></i></div>
+            <h3>Чат-бот помощник</h3>
+            <span class="project-tag">AI проект</span>
+            <p>Бот с NLP, распознавание намерений, диалоги.</p>
+            <div class="project-details" id="details-chatbot">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Python</li>
+                    <li>NLP</li>
+                    <li>Rasa</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Обработка естественного языка, обучение модели.</div>
+            </div>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>Rasa</span>
+                <span>NLP</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">智</div>
+        </div>
+
+        <!-- 8 - Новый проект: Аналитика данных -->
+        <div class="project-card" data-project="analytics">
+            <div class="project-img-placeholder"><i class="fas fa-chart-line"></i></div>
+            <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Дашборд аналитики</h3>
+            <span class="project-tag">data science</span>
+            <p>Визуализация данных, интерактивные графики.</p>
+            <div class="project-details" id="details-analytics">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Pandas</li>
+                    <li>Plotly</li>
+                    <li>Dash</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Обработка больших данных, фильтрация, экспорт.</div>
+            </div>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>Plotly</span>
+                <span>Dash</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">数</div>
+        </div>
+
+        <!-- 9 - Новый проект: Мобильное приложение -->
+        <div class="project-card" data-project="mobile">
+            <div class="project-img-placeholder"><i class="fas fa-mobile-alt"></i></div>
+            <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Трекер привычек</h3>
+            <span class="project-tag">мобильное</span>
+            <p>Приложение для отслеживания привычек с уведомлениями.</p>
+            <div class="project-details" id="details-mobile">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Flutter</li>
+                    <li>Firebase</li>
+                    <li>Push-уведомления</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Кроссплатформенная разработка, синхронизация данных.</div>
+            </div>
+            <div class="project-tech">
+                <span>Flutter</span>
+                <span>Firebase</span>
+                <span>Dart</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">习</div>
+        </div>
+
+    </div>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <div class="achievements-section">
+        <div class="section-title">
+            <i class="fas fa-trophy"></i>
+            Мои достижения
+            <span class="deco-char">荣</span>
+        </div>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-medal"></i></div>
+                <div class="ach-content">
+                    <h4>Победитель научно-практической конференции</h4>
+                    <p>Проект «Интеллектуальный помощник на основе нейросетей» — 2024</p>
+                    <span class="ach-tag">диплом I степени</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-award"></i></div>
+                <div class="ach-content">
+                    <h4>Призёр олимпиады по программированию</h4>
+                    <p>Республиканская олимпиада по информатике — 2025</p>
+                    <span class="ach-tag">3 место</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-certificate"></i></div>
+                <div class="ach-content">
+                    <h4>Лучший проект на курсах программирования</h4>
+                    <p>Разработка веб-приложения для управления задачами — 2025</p>
+                    <span class="ach-tag">гран-при</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-star"></i></div>
+                <div class="ach-content">
+                    <h4>Победитель хакатона «AI для экологии»</h4>
+                    <p>Создание модели для мониторинга загрязнения воздуха — 2024</p>
+                    <span class="ach-tag">1 место</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="ach-content">
+                    <h4>Стипендия за академические успехи</h4>
+                    <p>За высокие результаты в обучении и научной деятельности — 2024-2025</p>
+                    <span class="ach-tag">именная стипендия</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-microphone"></i></div>
+                <div class="ach-content">
+                    <h4>Песня «Life is beautiful»</h4>
+                    <p>Создание авторской песни с использованием AI-инструментов</p>
+                    <span class="ach-tag">творческий проект</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФУТЕР -->
+    <div class="footer-note">
+        <i class="fas fa-code"></i>  сделано с любовью к программированию · 2026
+        <i class="fas fa-heart" style="color: #c41e24;"></i>
+        <span class="deco-footer">龙 · 福</span>
+        <span style="margin-left: 1rem; color: #8b3a1f; font-weight: 500;">китайский стиль</span>
+    </div>
+
+</div>
+
+<script>
+    (function() {
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(card => {
+            const details = card.querySelector('.project-details');
+            if (!details) return;
+
+            card.addEventListener('click', function(e) {
+                // Игнорируем клик по плееру и ссылкам
+                if (e.target.closest('audio') || e.target.closest('.song-link-inline') || e.target.closest('a')) {
+                    return;
+                }
+
+                const isOpen = details.classList.contains('open');
+                document.querySelectorAll('.project-details.open').forEach(openDetail => {
+                    if (openDetail !== details) {
+                        openDetail.classList.remove('open');
+                    }
+                });
+                if (isOpen) {
+                    details.classList.remove('open');
+                } else {
+                    details.classList.add('open');
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            const isCard = e.target.closest('.project-card');
+            if (!isCard) {
+                document.querySelectorAll('.project-details.open').forEach(d => d.classList.remove('open'));
+            }
+        });
+
+        // Обработка ошибок аудио
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.addEventListener('error', function(e) {
+                console.log('Ошибка загрузки аудио. Пожалуйста, используйте ссылку на Suno.');
+            });
+        });
+
+    })();
+</script>
+
+</body>
+</html>   
