@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Портфолио · Дарья Гиро</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Ma+Shan+Zheng&family=Bangers&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #1a1410;
+            background-image: radial-gradient(circle at 20% 30%, rgba(180, 30, 30, 0.15) 0%, transparent 60%),
+            radial-gradient(circle at 80% 70%, rgba(180, 30, 30, 0.10) 0%, transparent 50%);
+            color: #e8ddd0;
+            line-height: 1.5;
+            padding: 1.5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            transition: background 0.5s, color 0.4s;
+        }
+
+        /* ===== САКУРА (падающие лепестки) ===== */
+        .sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+            transition: opacity 0.6s;
+        }
+
+        .petal {
+            position: absolute;
+            top: -20px;
+            width: 20px;
+            height: 20px;
+            background: #f9c9d6;
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.5;
+            transform: rotate(45deg);
+            animation: fall linear infinite;
+            box-shadow: 0 0 8px rgba(255, 200, 210, 0.4);
+        }
+
+        .petal::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 6px;
+            width: 10px;
+            height: 12px;
+            background: #f9b8c8;
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.6;
+            transform: rotate(-20deg);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(1.1);
+                opacity: 0.1;
+            }
+        }
+
+        /* ===== ЧЕЛОВЕК-ПАУК (БОЛЬШОЙ, ХАОТИЧНО ПЕРЕМЕЩАЮЩИЙСЯ) ===== */
+        .spiderman-container {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transition: opacity 0.6s, left 0.9s cubic-bezier(0.22, 1, 0.36, 1), top 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: scale(0.6);
+            left: 20px;
+            bottom: 30px;
+            width: 160px;
+            height: 160px;
+        }
+
+        .spiderman-container.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .spiderman {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spideyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(255, 0, 0, 0.4));
+            line-height: 1;
+        }
+
+        /* Стилизованный Человек-паук через CSS */
+        .spider-body {
+            position: relative;
+            width: 140px;
+            height: 150px;
+        }
+
+        .spider-head {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 75px;
+            background: radial-gradient(ellipse at 50% 60%, #cc2222, #991111);
+            border-radius: 50% 50% 45% 45%;
+            border: 3px solid #1a0a0a;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.3), 0 0 30px rgba(255,0,0,0.2);
+        }
+
+        .spider-eyes {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 52px;
+            height: 28px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .eye {
+            width: 22px;
+            height: 26px;
+            background: white;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            border: 2px solid #1a0a0a;
+            box-shadow: inset 0 -4px 8px rgba(0,0,0,0.1);
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 10px;
+            background: #1a0a0a;
+            border-radius: 50% 50% 30% 30%;
+            clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+        }
+
+        .eye.left { transform: rotate(-8deg); }
+        .eye.right { transform: rotate(8deg); }
+
+        .spider-web-head {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .spider-web-head .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 1.5px;
+            background: rgba(0,0,0,0.15);
+            transform-origin: center center;
+        }
+        .spider-web-head .line:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+        .spider-web-head .line:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg); }
+        .spider-web-head .line:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg); }
+        .spider-web-head .line:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg); }
+
+        .spider-body-main {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 55px;
+            background: radial-gradient(ellipse at 50% 40%, #dd2222, #991111);
+            border-radius: 10% 10% 40% 40%;
+            border: 3px solid #1a0a0a;
+            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.2);
+        }
+
+        .spider-chest {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+        }
+
+        .spider-chest .leg {
+            position: absolute;
+            width: 18px;
+            height: 2px;
+            background: #1a0a0a;
+            border-radius: 2px;
+        }
+        .spider-chest .leg:nth-child(1) { top: 2px; left: -8px; transform: rotate(-30deg); }
+        .spider-chest .leg:nth-child(2) { top: 2px; right: -8px; transform: rotate(30deg); }
+        .spider-chest .leg:nth-child(3) { top: 10px; left: -10px; transform: rotate(-15deg); }
+        .spider-chest .leg:nth-child(4) { top: 10px; right: -10px; transform: rotate(15deg); }
+        .spider-chest .leg:nth-child(5) { top: 18px; left: -8px; transform: rotate(15deg); }
+        .spider-chest .leg:nth-child(6) { top: 18px; right: -8px; transform: rotate(-15deg); }
+        .spider-chest .leg:nth-child(7) { top: 24px; left: -6px; transform: rotate(30deg); }
+        .spider-chest .leg:nth-child(8) { top: 24px; right: -6px; transform: rotate(-30deg); }
+
+        .spider-chest .body-dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #1a0a0a;
+            border-radius: 50%;
+        }
+
+        .spider-legs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .spider-leg {
+            position: absolute;
+            width: 40px;
+            height: 4px;
+            background: #1a0a0a;
+            border-radius: 4px;
+            transform-origin: center center;
+        }
+        .spider-leg:nth-child(1) { top: 70px; left: -25px; transform: rotate(-60deg); }
+        .spider-leg:nth-child(2) { top: 70px; right: -25px; transform: rotate(60deg); }
+        .spider-leg:nth-child(3) { top: 82px; left: -30px; transform: rotate(-45deg); }
+        .spider-leg:nth-child(4) { top: 82px; right: -30px; transform: rotate(45deg); }
+        .spider-leg:nth-child(5) { top: 94px; left: -28px; transform: rotate(-30deg); }
+        .spider-leg:nth-child(6) { top: 94px; right: -28px; transform: rotate(30deg); }
+        .spider-leg:nth-child(7) { top: 104px; left: -22px; transform: rotate(-15deg); }
+        .spider-leg:nth-child(8) { top: 104px; right: -22px; transform: rotate(15deg); }
+
+        .spider-leg::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: -2px;
+            width: 8px;
+            height: 8px;
+            background: #cc2222;
+            border-radius: 50%;
+            border: 2px solid #1a0a0a;
+        }
+        .spider-leg:nth-child(2)::after,
+        .spider-leg:nth-child(4)::after,
+        .spider-leg:nth-child(6)::after,
+        .spider-leg:nth-child(8)::after {
+            left: auto;
+            right: -2px;
+        }
+
+        .spider-web-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            pointer-events: none;
+        }
+
+        .spider-web-rings .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: webPulse 3s ease-in-out infinite;
+        }
+        .spider-web-rings .ring:nth-child(1) { width: 60px; height: 60px; animation-delay: 0s; }
+        .spider-web-rings .ring:nth-child(2) { width: 90px; height: 90px; animation-delay: 0.3s; }
+        .spider-web-rings .ring:nth-child(3) { width: 120px; height: 120px; animation-delay: 0.6s; }
+        .spider-web-rings .ring:nth-child(4) { width: 150px; height: 150px; animation-delay: 0.9s; }
+
+        .spider-web-rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 170px;
+            height: 170px;
+            pointer-events: none;
+        }
+
+        .spider-web-rays .ray {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 160px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transform-origin: center center;
+        }
+        .spider-web-rays .ray:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+        .spider-web-rays .ray:nth-child(2) { transform: translate(-50%, -50%) rotate(30deg); }
+        .spider-web-rays .ray:nth-child(3) { transform: translate(-50%, -50%) rotate(60deg); }
+        .spider-web-rays .ray:nth-child(4) { transform: translate(-50%, -50%) rotate(90deg); }
+        .spider-web-rays .ray:nth-child(5) { transform: translate(-50%, -50%) rotate(120deg); }
+        .spider-web-rays .ray:nth-child(6) { transform: translate(-50%, -50%) rotate(150deg); }
+
+        @keyframes spideyBounce {
+            0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+            50% { transform: translateY(-15px) rotate(3deg) scale(1.03); }
+        }
+
+        @keyframes webPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+        }
+
+        /* ===== ПАУТИНА (декор) ===== */
+        .web-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0;
+            transition: opacity 0.8s;
+        }
+
+        .web-lines.active {
+            opacity: 0.12;
+        }
+
+        .web-lines svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: #1f1814;
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+            padding: 2rem 2rem 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #8b2a2a;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .container::before {
+            content: '福';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 8rem;
+            color: #6b1a1a;
+            opacity: 0.15;
+            transform: rotate(15deg);
+            pointer-events: none;
+            transition: all 0.5s;
+        }
+        .container::after {
+            content: '龙';
+            position: absolute;
+            bottom: -30px;
+            left: 10px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 10rem;
+            color: #7a2a1a;
+            opacity: 0.12;
+            transform: rotate(-10deg);
+            pointer-events: none;
+            transition: all 0.5s;
+        }
+
+        /* ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ===== */
+        .theme-switch-wrap {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .theme-btn {
+            background: #2d1a14;
+            border: 2px solid #8b2a2a;
+            color: #e8ddd0;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .theme-btn i {
+            font-size: 1.1rem;
+            color: #c41e24;
+            transition: transform 0.5s;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.04);
+            background: #3d1a14;
+            border-color: #c41e24;
+            box-shadow: 0 0 20px rgba(180, 30, 30, 0.3);
+        }
+
+        .theme-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* ============================================================
+           ТЕМА MARVEL — НЕОНОВЫЙ СТИЛЬ (красный + синий + фиолетовый)
+           ============================================================ */
+        body.marvel-theme {
+            background: #0a0a12;
+            background-image: radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.2) 0%, transparent 40%),
+                              radial-gradient(circle at 80% 80%, rgba(0, 50, 255, 0.15) 0%, transparent 40%),
+                              radial-gradient(circle at 50% 50%, rgba(150, 0, 255, 0.05) 0%, transparent 60%);
+        }
+
+        body.marvel-theme .container {
+            background: #0d0d1a;
+            border-color: #ff1a1a;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.15), inset 0 0 80px rgba(255, 0, 0, 0.03);
+        }
+
+        body.marvel-theme .container::before {
+            content: '⚡';
+            font-family: 'Inter', sans-serif;
+            font-size: 7rem;
+            color: #ff1a1a;
+            opacity: 0.12;
+            transform: rotate(0deg);
+            text-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
+        }
+
+        body.marvel-theme .container::after {
+            content: '✦';
+            font-family: 'Inter', sans-serif;
+            font-size: 9rem;
+            color: #1a4aff;
+            opacity: 0.08;
+            transform: rotate(-5deg);
+            text-shadow: 0 0 40px rgba(26, 74, 255, 0.3);
+        }
+
+        body.marvel-theme .header-card {
+            border-bottom-color: #ff1a1a;
+            border-bottom-width: 3px;
+            border-image: linear-gradient(90deg, #ff1a1a, #1a4aff, #ff1a1a) 1;
+            border-bottom-style: solid;
+        }
+
+        body.marvel-theme .avatar {
+            background: linear-gradient(145deg, #1a0a0a, #cc1111);
+            border-color: #2a0a0a;
+            outline-color: #ff1a1a;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5), 0 0 80px rgba(26, 74, 255, 0.2);
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        body.marvel-theme .title-group h1 .chinese-deco {
+            color: #ff1a1a;
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }
+
+        body.marvel-theme .title-group h1 span {
+            background: #1a0a1a;
+            color: #4af;
+            border-color: #ff1a1a;
+            box-shadow: 0 0 20px rgba(26, 74, 255, 0.15);
+        }
+
+        body.marvel-theme .title-group .subhead i {
+            color: #ff1a1a;
+        }
+
+        body.marvel-theme .contact-links a i {
+            color: #ff1a1a;
+        }
+
+        body.marvel-theme .contact-links a:hover {
+            color: #4af;
+            border-bottom-color: #4af;
+        }
+
+        body.marvel-theme .section-title i {
+            color: #ff1a1a;
+            background: #1a0a1a;
+            border-color: #ff1a1a;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        body.marvel-theme .section-title .deco-char {
+            color: #4af;
+            font-family: 'Bangers', cursive;
+            text-shadow: 0 0 30px rgba(26, 74, 255, 0.3);
+        }
+
+        body.marvel-theme .project-card {
+            background: #111122;
+            border-color: #2a1a2a;
+            transition: all 0.3s;
+        }
+
+        body.marvel-theme .project-card::before {
+            background: linear-gradient(90deg, #ff1a1a, #4af, #ff1a1a);
+            height: 3px;
+        }
+
+        body.marvel-theme .project-card:hover {
+            border-color: #ff1a1a;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.2), 0 0 80px rgba(26, 74, 255, 0.1);
+            transform: translateY(-6px);
+        }
+
+        body.marvel-theme .project-icon {
+            color: #ff1a1a !important;
+            background: #1a0a1a;
+            border-color: #2a1a2a;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+        }
+
+        body.marvel-theme .project-card:hover .project-icon {
+            background: #2a0a2a;
+            color: #4af !important;
+            box-shadow: 0 0 30px rgba(26, 74, 255, 0.2);
+        }
+
+        body.marvel-theme .project-tag {
+            background: #1a0a1a;
+            color: #ff1a1a;
+            border-color: #ff1a1a;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+        }
+
+        body.marvel-theme .project-details {
+            background: #1a0a1a;
+            border-left-color: #4af;
+        }
+
+        body.marvel-theme .project-details h4 {
+            color: #4af;
+            text-shadow: 0 0 20px rgba(26, 74, 255, 0.3);
+        }
+
+        body.marvel-theme .project-details ul li {
+            background: #0d0d1a;
+            border-color: #2a1a2a;
+            color: #d0c0d0;
+        }
+
+        body.marvel-theme .project-details .extra-text {
+            background: #0d0d1a;
+            border-color: #2a1a2a;
+            color: #c0b0c0;
+        }
+
+        body.marvel-theme .project-tech span {
+            background: #1a0a1a;
+            border-color: #2a1a2a;
+            color: #d0c0d0;
+        }
+
+        body.marvel-theme .project-tech span:hover {
+            color: #ff1a1a;
+            border-color: #ff1a1a;
+        }
+
+        body.marvel-theme .project-card .card-deco {
+            color: #ff1a1a;
+            font-family: 'Bangers', cursive;
+            opacity: 0.2;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        body.marvel-theme .achievements-section {
+            background: #0d0d1a;
+            border-color: #ff1a1a;
+            box-shadow: inset 0 0 60px rgba(255, 0, 0, 0.03);
+        }
+
+        body.marvel-theme .achievement-item {
+            background: #1a0a1a;
+            border-color: #2a1a2a;
+        }
+
+        body.marvel-theme .achievement-item:hover {
+            border-color: #4af;
+            box-shadow: 0 0 30px rgba(26, 74, 255, 0.15);
+        }
+
+        body.marvel-theme .achievement-item .ach-icon {
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        body.marvel-theme .achievement-item .ach-content .ach-tag {
+            background: #0d0d1a;
+            color: #4af;
+            border-color: #4af;
+            box-shadow: 0 0 15px rgba(26, 74, 255, 0.1);
+        }
+
+        body.marvel-theme .footer-note {
+            border-top-color: #2a1a2a;
+            color: #7a6a7a;
+        }
+
+        body.marvel-theme .footer-note i {
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        body.marvel-theme .footer-note .deco-footer {
+            color: #4af;
+            font-family: 'Bangers', cursive;
+            text-shadow: 0 0 30px rgba(26, 74, 255, 0.3);
+        }
+
+        body.marvel-theme .theme-btn {
+            background: #1a0a1a;
+            border-color: #ff1a1a;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+        }
+
+        body.marvel-theme .theme-btn i {
+            color: #ff1a1a;
+        }
+
+        body.marvel-theme .theme-btn:hover {
+            background: #2a0a2a;
+            border-color: #4af;
+            box-shadow: 0 0 40px rgba(26, 74, 255, 0.2);
+        }
+
+        body.marvel-theme .song-card .song-link-inline a {
+            color: #ff1a1a;
+            border-bottom-color: #4af;
+        }
+
+        body.marvel-theme .song-card .song-link-inline a:hover {
+            color: #4af;
+            border-bottom-color: #ff1a1a;
+        }
+
+        body.marvel-theme .project-card h3 {
+            color: #f0e0f0;
+        }
+
+        body.marvel-theme .project-card p {
+            color: #c0b0c0;
+        }
+
+        body.marvel-theme .achievement-item .ach-content h4 {
+            color: #f0e0f0;
+        }
+
+        body.marvel-theme .achievement-item .ach-content p {
+            color: #c0b0c0;
+        }
+
+        /* ===== ВИЗИТКА ===== */
+        .header-card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #8b2a2a;
+            position: relative;
+            z-index: 1;
+            transition: border-color 0.4s;
+        }
+
+        .avatar {
+            flex-shrink: 0;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 28px rgba(180, 30, 30, 0.4);
+            border: 4px solid #3d1a1a;
+            outline: 3px solid #8b2a2a;
+            transition: all 0.4s;
+            overflow: hidden;
+            background: #2d1a14;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar .fallback-text {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: #f5e6c8;
+            display: none;
+        }
+
+        .avatar img:not([src]) + .fallback-text,
+        .avatar img[src=""] + .fallback-text,
+        .avatar img.error + .fallback-text {
+            display: block;
+        }
+
+        .avatar img:not([src]) {
+            display: none;
+        }
+        .avatar img[src=""] {
+            display: none;
+        }
+        .avatar img.error {
+            display: none;
+        }
+
+        .title-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .title-group h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem;
+            color: #f0e0d0;
+        }
+
+        .title-group h1 .chinese-deco {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #c41e24;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            transition: all 0.4s;
+        }
+
+        .title-group h1 span {
+            background: #2d1a14;
+            color: #e8b8a0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.15rem 1rem;
+            border-radius: 60px;
+            letter-spacing: 0.4px;
+            border: 1px solid #8b2a2a;
+            transition: all 0.4s;
+        }
+
+        .title-group .subhead {
+            font-size: 0.95rem;
+            color: #c0b0a0;
+            margin-top: 0.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .title-group .subhead i {
+            color: #c41e24;
+            width: 1.4rem;
+            transition: color 0.4s;
+        }
+
+        .contact-links {
+            margin-top: 0.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #d0c0b0;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: color 0.2s, transform 0.15s, border-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+        }
+
+        .contact-links a i {
+            color: #c41e24;
+            font-size: 1rem;
+            width: 1.2rem;
+            transition: color 0.4s;
+        }
+
+        .contact-links a:hover {
+            color: #e8c8b0;
+            border-bottom-color: #c41e24;
+            transform: translateY(-1px);
+        }
+
+        /* ===== ПРОЕКТЫ ===== */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #f0e0d0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title i {
+            color: #c41e24;
+            font-size: 1.6rem;
+            background: #2d1a14;
+            padding: 0.3rem 0.6rem;
+            border-radius: 16px;
+            border: 1px solid #8b2a2a;
+            transition: all 0.4s;
+        }
+
+        .section-title .deco-char {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            color: #c41e24;
+            margin-left: 0.2rem;
+            opacity: 0.7;
+            transition: all 0.4s;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card {
+            background: #221b16;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid #3d2a22;
+            transition: transform 0.2s ease, box-shadow 0.25s, border-color 0.2s, background 0.4s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8b1a1a, #c41e24, #8b1a1a);
+            opacity: 0.5;
+            transition: opacity 0.3s, background 0.4s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(180, 30, 30, 0.2);
+            border-color: #8b2a2a;
+        }
+
+        .project-card .card-deco {
+            position: absolute;
+            bottom: 6px;
+            right: 10px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            color: #3d2a22;
+            opacity: 0.2;
+            pointer-events: none;
+            transform: rotate(5deg);
+            transition: all 0.4s;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: #c41e24 !important;
+            margin-bottom: 0.3rem;
+            background: #2d1a14;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.3s;
+            border: 1px solid #3d2a22;
+        }
+
+        .project-card:hover .project-icon {
+            background: #3d1a14;
+            color: #c41e24 !important;
+        }
+
+        .project-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.1rem;
+            color: #f0e0d0;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: #2d1a14;
+            color: #c41e24;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            align-self: flex-start;
+            border: 1px solid #8b2a2a;
+            transition: all 0.4s;
+        }
+
+        .project-card p {
+            color: #c0b0a0;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .project-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin 0.3s, background 0.4s, border-color 0.4s;
+            margin-top: 0;
+            background: #2d1a14;
+            border-radius: 12px;
+            padding: 0 0.8rem;
+            border-left: 3px solid #c41e24;
+        }
+
+        .project-details.open {
+            max-height: 350px;
+            opacity: 1;
+            padding: 0.6rem 0.8rem 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .project-details h4 {
+            font-size: 0.7rem;
+            color: #c41e24;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.4s;
+        }
+
+        .project-details ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .project-details ul li {
+            background: #1f1814;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: #d0c0b0;
+            border: 1px solid #3d2a22;
+            transition: all 0.4s;
+        }
+
+        .project-details .extra-text {
+            font-size: 0.75rem;
+            color: #c0b0a0;
+            background: #1f1814;
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+            border: 1px solid #3d2a22;
+            margin: 0.2rem 0 0;
+            transition: all 0.4s;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.4rem;
+            margin-top: auto;
+            padding-top: 0.4rem;
+            border-top: 1.5px solid #2d1a14;
+        }
+
+        .project-tech span {
+            background: #2d1a14;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #c0b0a0;
+            letter-spacing: 0.2px;
+            border: 1px solid #3d2a22;
+            transition: all 0.4s;
+        }
+
+        .project-card .click-hint {
+            font-size: 0.55rem;
+            color: #7a6a5a;
+            margin-top: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            opacity: 0.6;
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b2a2a;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid #3d2a22;
+            transition: background 0.3s;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L80,100 L0,100 Z" fill="%238b1a1a" opacity="0.08"/><circle cx="70" cy="30" r="15" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* ===== ПРОЕКТ — САЙТЫ-ОТКРЫТКИ С АНИМАЦИЯМИ ===== */
+        .project-card.postcards .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L80,100 L0,100 Z" fill="%238b1a1a" opacity="0.08"/><circle cx="50" cy="40" r="15" fill="%23c41e24" opacity="0.08"/><circle cx="30" cy="60" r="10" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* ===== ПРОЕКТ — СПИСОК ДЕЛ ===== */
+        .project-card.todolist .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="20" y="20" width="60" height="8" rx="3" fill="%23c41e24" opacity="0.12"/><rect x="20" y="36" width="60" height="8" rx="3" fill="%23c41e24" opacity="0.12"/><rect x="20" y="52" width="60" height="8" rx="3" fill="%23c41e24" opacity="0.12"/><circle cx="14" cy="24" r="4" fill="%23c41e24" opacity="0.12"/><circle cx="14" cy="40" r="4" fill="%23c41e24" opacity="0.12"/><circle cx="14" cy="56" r="4" fill="%23c41e24" opacity="0.12"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* ===== ПРОЕКТ — САЙТ ДЛЯ БИЗНЕСА ПО ТАХОГРАФАМ ===== */
+        .project-card.tachograph .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="15" y="30" width="70" height="40" rx="5" fill="%23c41e24" opacity="0.08"/><circle cx="35" cy="50" r="8" fill="%23c41e24" opacity="0.08"/><circle cx="65" cy="50" r="8" fill="%23c41e24" opacity="0.08"/><rect x="40" y="42" width="20" height="16" rx="2" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* ===== ПРОЕКТ — ПОДСЧЕТ ОТМЕТОК ===== */
+        .project-card.grades .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect x="20" y="20" width="60" height="40" rx="5" fill="%23c41e24" opacity="0.08"/><circle cx="35" cy="35" r="5" fill="%23c41e24" opacity="0.12"/><circle cx="50" cy="35" r="5" fill="%23c41e24" opacity="0.12"/><circle cx="65" cy="35" r="5" fill="%23c41e24" opacity="0.12"/><text x="30" y="72" font-size="18" fill="%23c41e24" opacity="0.1">10</text></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .project-img-placeholder i {
+            font-size: 1.8rem;
+            color: #c41e24;
+            opacity: 0.6;
+            background: rgba(31, 24, 20, 0.6);
+            padding: 0.3rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== МУЗЫКАЛЬНАЯ КАРТОЧКА ===== */
+        .song-card .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="40" r="25" fill="%23c41e24" opacity="0.08"/><path d="M35,40 L55,30 L55,50 L35,40 Z" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        .song-card .song-player-mini {
+            margin: 0.2rem 0 0.3rem;
+            width: 100%;
+        }
+
+        .song-card .song-player-mini audio {
+            width: 100%;
+            height: 36px;
+            border-radius: 20px;
+            background: #2d1a14;
+            outline: none;
+        }
+
+        .song-card .song-player-mini audio::-webkit-media-controls-panel {
+            background: #2d1a14;
+        }
+
+        .song-card .song-link-inline {
+            font-size: 0.7rem;
+            margin-top: 0.1rem;
+        }
+
+        .song-card .song-link-inline a {
+            color: #c41e24;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1.5px solid #8b2a2a;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .song-card .song-link-inline a:hover {
+            color: #e84a4a;
+            border-bottom-color: #c41e24;
+        }
+
+        /* ===== ДОСТИЖЕНИЯ ===== */
+        .achievements-section {
+            margin: 2.5rem 0 1.5rem;
+            padding: 1.5rem 2rem;
+            background: #1f1814;
+            border-radius: 1.5rem;
+            border: 2px solid #8b2a2a;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .achievements-section .section-title {
+            margin-bottom: 1rem;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            background: #2d1a14;
+            border-radius: 1rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid #3d2a22;
+            transition: transform 0.2s, border-color 0.2s, background 0.4s;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-2px);
+            border-color: #8b2a2a;
+        }
+
+        .achievement-item .ach-icon {
+            font-size: 1.4rem;
+            color: #c41e24;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+            transition: color 0.4s;
+        }
+
+        .achievement-item .ach-content h4 {
+            font-size: 0.95rem;
+            color: #f0e0d0;
+            font-weight: 700;
+        }
+
+        .achievement-item .ach-content p {
+            font-size: 0.8rem;
+            color: #c0b0a0;
+            margin-top: 0.1rem;
+        }
+
+        .achievement-item .ach-content .ach-tag {
+            display: inline-block;
+            background: #1f1814;
+            color: #c41e24;
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.05rem 0.6rem;
+            border-radius: 30px;
+            border: 1px solid #8b2a2a;
+            margin-top: 0.2rem;
+            transition: all 0.4s;
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7a6a5a;
+            border-top: 2px solid #2d1a14;
+            padding-top: 1.5rem;
+            letter-spacing: 0.3px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .footer-note i {
+            color: #c41e24;
+            margin: 0 4px;
+            transition: color 0.4s;
+        }
+
+        .footer-note .deco-footer {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1rem;
+            color: #c41e24;
+            opacity: 0.6;
+            margin-left: 0.3rem;
+            transition: all 0.4s;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 820px) {
+            .container {
+                padding: 1.5rem 1.5rem 2rem;
+            }
+            .title-group h1 {
+                font-size: 1.7rem;
+            }
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .spiderman-container {
+                width: 120px;
+                height: 120px;
+            }
+            .spider-body {
+                width: 110px;
+                height: 120px;
+            }
+            .spider-head {
+                width: 55px;
+                height: 60px;
+            }
+            .spider-eyes {
+                width: 40px;
+                height: 22px;
+                top: 12px;
+            }
+            .eye {
+                width: 17px;
+                height: 20px;
+            }
+            .eye::after {
+                width: 10px;
+                height: 8px;
+            }
+            .spider-body-main {
+                width: 48px;
+                height: 44px;
+                top: 48px;
+            }
+            .spider-chest {
+                width: 22px;
+                height: 22px;
+            }
+            .spider-chest .leg {
+                width: 14px;
+            }
+            .spider-leg {
+                width: 30px;
+                height: 3px;
+            }
+            .spider-leg:nth-child(1) { top: 56px; left: -18px; }
+            .spider-leg:nth-child(2) { top: 56px; right: -18px; }
+            .spider-leg:nth-child(3) { top: 66px; left: -22px; }
+            .spider-leg:nth-child(4) { top: 66px; right: -22px; }
+            .spider-leg:nth-child(5) { top: 76px; left: -20px; }
+            .spider-leg:nth-child(6) { top: 76px; right: -20px; }
+            .spider-leg:nth-child(7) { top: 84px; left: -16px; }
+            .spider-leg:nth-child(8) { top: 84px; right: -16px; }
+            .spider-web-rings {
+                width: 130px;
+                height: 130px;
+            }
+            .spider-web-rings .ring:nth-child(1) { width: 50px; height: 50px; }
+            .spider-web-rings .ring:nth-child(2) { width: 75px; height: 75px; }
+            .spider-web-rings .ring:nth-child(3) { width: 100px; height: 100px; }
+            .spider-web-rings .ring:nth-child(4) { width: 125px; height: 125px; }
+            .spider-web-rays {
+                width: 140px;
+                height: 140px;
+            }
+            .spider-web-rays .ray {
+                width: 130px;
+            }
+            .spider-web-head .line {
+                width: 48px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0.8rem 0.5rem;
+            }
+            .container {
+                padding: 1rem 0.8rem;
+                border-radius: 1.5rem;
+            }
+            .header-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+            .title-group h1 {
+                font-size: 1.4rem;
+            }
+            .title-group .subhead {
+                font-size: 0.85rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.2rem;
+            }
+            .contact-links {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .project-img-placeholder {
+                height: 60px;
+            }
+            .project-card {
+                padding: 0.7rem 0.8rem 0.9rem;
+            }
+            .project-card h3 {
+                font-size: 0.95rem;
+            }
+            .project-card p {
+                font-size: 0.7rem;
+            }
+            .achievements-section {
+                padding: 1rem 1.2rem;
+            }
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+            .container::before,
+            .container::after {
+                display: none;
+            }
+            .theme-switch-wrap {
+                justify-content: center;
+            }
+            .spiderman-container {
+                width: 90px;
+                height: 90px;
+            }
+            .spider-body {
+                width: 80px;
+                height: 90px;
+            }
+            .spider-head {
+                width: 42px;
+                height: 46px;
+            }
+            .spider-eyes {
+                width: 30px;
+                height: 16px;
+                top: 9px;
+            }
+            .eye {
+                width: 13px;
+                height: 15px;
+            }
+            .eye::after {
+                width: 8px;
+                height: 6px;
+            }
+            .spider-body-main {
+                width: 36px;
+                height: 34px;
+                top: 36px;
+            }
+            .spider-chest {
+                width: 16px;
+                height: 16px;
+            }
+            .spider-chest .leg {
+                width: 10px;
+            }
+            .spider-leg {
+                width: 22px;
+                height: 2.5px;
+            }
+            .spider-leg:nth-child(1) { top: 42px; left: -14px; }
+            .spider-leg:nth-child(2) { top: 42px; right: -14px; }
+            .spider-leg:nth-child(3) { top: 50px; left: -16px; }
+            .spider-leg:nth-child(4) { top: 50px; right: -16px; }
+            .spider-leg:nth-child(5) { top: 58px; left: -15px; }
+            .spider-leg:nth-child(6) { top: 58px; right: -15px; }
+            .spider-leg:nth-child(7) { top: 64px; left: -12px; }
+            .spider-leg:nth-child(8) { top: 64px; right: -12px; }
+            .spider-web-rings {
+                width: 100px;
+                height: 100px;
+            }
+            .spider-web-rings .ring:nth-child(1) { width: 38px; height: 38px; }
+            .spider-web-rings .ring:nth-child(2) { width: 58px; height: 58px; }
+            .spider-web-rings .ring:nth-child(3) { width: 78px; height: 78px; }
+            .spider-web-rings .ring:nth-child(4) { width: 98px; height: 98px; }
+            .spider-web-rays {
+                width: 110px;
+                height: 110px;
+            }
+            .spider-web-rays .ray {
+                width: 100px;
+            }
+            .spider-web-head .line {
+                width: 36px;
+            }
+            .spider-leg::after {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+            .title-group h1 {
+                font-size: 1.2rem;
+            }
+            .project-card {
+                padding: 0.6rem 0.7rem 0.8rem;
+            }
+            .project-img-placeholder {
+                height: 50px;
+            }
+            .spiderman-container {
+                width: 70px;
+                height: 70px;
+            }
+            .spider-body {
+                width: 60px;
+                height: 68px;
+            }
+            .spider-head {
+                width: 32px;
+                height: 36px;
+            }
+            .spider-eyes {
+                width: 24px;
+                height: 12px;
+                top: 7px;
+            }
+            .eye {
+                width: 10px;
+                height: 12px;
+                border-width: 1.5px;
+            }
+            .eye::after {
+                width: 6px;
+                height: 4px;
+                bottom: 2px;
+            }
+            .spider-body-main {
+                width: 28px;
+                height: 26px;
+                top: 28px;
+                border-width: 2px;
+            }
+            .spider-chest {
+                width: 12px;
+                height: 12px;
+            }
+            .spider-chest .leg {
+                width: 8px;
+                height: 1.5px;
+            }
+            .spider-chest .body-dot {
+                width: 6px;
+                height: 6px;
+            }
+            .spider-leg {
+                width: 16px;
+                height: 2px;
+            }
+            .spider-leg:nth-child(1) { top: 32px; left: -10px; transform: rotate(-60deg); }
+            .spider-leg:nth-child(2) { top: 32px; right: -10px; transform: rotate(60deg); }
+            .spider-leg:nth-child(3) { top: 38px; left: -12px; transform: rotate(-45deg); }
+            .spider-leg:nth-child(4) { top: 38px; right: -12px; transform: rotate(45deg); }
+            .spider-leg:nth-child(5) { top: 44px; left: -11px; transform: rotate(-30deg); }
+            .spider-leg:nth-child(6) { top: 44px; right: -11px; transform: rotate(30deg); }
+            .spider-leg:nth-child(7) { top: 48px; left: -9px; transform: rotate(-15deg); }
+            .spider-leg:nth-child(8) { top: 48px; right: -9px; transform: rotate(15deg); }
+            .spider-leg::after {
+                width: 4px;
+                height: 4px;
+                border-width: 1.5px;
+            }
+            .spider-web-rings {
+                width: 76px;
+                height: 76px;
+            }
+            .spider-web-rings .ring:nth-child(1) { width: 28px; height: 28px; }
+            .spider-web-rings .ring:nth-child(2) { width: 44px; height: 44px; }
+            .spider-web-rings .ring:nth-child(3) { width: 60px; height: 60px; }
+            .spider-web-rings .ring:nth-child(4) { width: 76px; height: 76px; }
+            .spider-web-rays {
+                width: 84px;
+                height: 84px;
+            }
+            .spider-web-rays .ray {
+                width: 76px;
+            }
+            .spider-web-head .line {
+                width: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== САКУРА (падающие лепестки) ===== -->
+<div class="sakura-container" id="sakuraContainer"></div>
+
+<!-- ===== ЧЕЛОВЕК-ПАУК (ХАОТИЧНО ПЕРЕМЕЩАЮЩИЙСЯ) ===== -->
+<div class="spiderman-container" id="spidermanContainer">
+    <div class="spiderman">
+        <div class="spider-body">
+            <div class="spider-head">
+                <div class="spider-eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="spider-web-head">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="spider-body-main">
+                <div class="spider-chest">
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="leg"></div>
+                    <div class="body-dot"></div>
+                </div>
+            </div>
+            <div class="spider-legs">
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+                <div class="spider-leg"></div>
+            </div>
+            <div class="spider-web-rings">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+            </div>
+            <div class="spider-web-rays">
+                <div class="ray"></div>
+                <div class="ray"></div>
+                <div class="ray"></div>
+                <div class="ray"></div>
+                <div class="ray"></div>
+                <div class="ray"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ПАУТИНА (декор) ===== -->
+<div class="web-lines" id="webLines">
+    <svg viewBox="0 0 1000 800" preserveAspectRatio="none">
+        <path d="M0,0 L200,100 L100,300 L0,500 L150,700 L300,800 L500,750 L700,800 L850,700 L1000,500 L900,300 L800,100 L1000,0" stroke="#ff1a1a" stroke-width="2" fill="none" opacity="0.3"/>
+        <path d="M0,200 L500,0 L1000,200" stroke="#ff1a1a" stroke-width="1.5" fill="none" opacity="0.2"/>
+        <path d="M0,600 L500,800 L1000,600" stroke="#ff1a1a" stroke-width="1.5" fill="none" opacity="0.2"/>
+        <path d="M100,0 L100,800" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.15"/>
+        <path d="M900,0 L900,800" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.15"/>
+        <path d="M0,100 Q500,200 1000,100" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.15"/>
+        <path d="M0,700 Q500,600 1000,700" stroke="#ff1a1a" stroke-width="1" fill="none" opacity="0.15"/>
+    </svg>
+</div>
+
+<div class="container">
+
+    <!-- КНОПКА СМЕНЫ ТЕМЫ -->
+    <div class="theme-switch-wrap">
+        <button class="theme-btn" id="themeToggle">
+            <i class="fas fa-dragon"></i>
+            <span id="themeLabel">Китайская тема</span>
+            <i class="fas fa-chevron-circle-right" style="font-size:0.8rem;"></i>
+            <i class="fas fa-bolt" style="font-size:0.9rem;"></i>
+        </button>
+    </div>
+
+    <!-- ВИЗИТКА -->
+    <div class="header-card">
+        <div class="avatar">
+            <img src="1000007993.jpg" alt="Дарья Гиро" id="avatarImg" onerror="this.classList.add('error'); this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <span class="fallback-text">吉</span>
+        </div>
+        <div class="title-group">
+            <h1>
+                <span class="chinese-deco">吉罗</span> Дарья Гиро
+                <span>junior dev</span>
+            </h1>
+            <div class="subhead">
+                <span><i class="fas fa-graduation-cap"></i> Курсы · 2026</span>
+                <span><i class="fas fa-map-pin"></i> Минск</span>
+                <span><i class="fas fa-code"></i> 5+ проектов</span>
+            </div>
+            <div class="contact-links">
+                <a href="#"><i class="fab fa-github"></i> girodash19-cell/-</a>
+                <a href="#"><i class="fab fa-linkedin"></i> linkedin/in/darya-giro</a>
+                <a href="#"><i class="fas fa-envelope"></i> girodash19@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОРТФОЛИО -->
+    <div class="section-title">
+        <i class="fas fa-folder-open"></i>
+        Мои проекты
+        <span class="deco-char">作</span>
+        <span style="font-size: 0.7rem; font-weight: 400; color: #7a6a5a; margin-left: 0.2rem;">(кликни по карточке)</span>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+        <!-- 1 - САЙТЫ-ОТКРЫТКИ С АНИМАЦИЯМИ -->
+        <div class="project-card postcards" data-project="postcards">
+            <div class="project-img-placeholder"><i class="fas fa-gift"></i></div>
+            <div class="project-icon"><i class="fas fa-star"></i></div>
+            <h3>Сайты-открытки с анимациями</h3>
+            <span class="project-tag">творческий</span>
+            <p>Интерактивные открытки с праздничными анимациями и эффектами.</p>
+            <div class="project-details" id="details-postcards">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>CSS-анимации</li>
+                    <li>JavaScript</li>
+                    <li>Canvas</li>
+                    <li>Креатив</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Создание уникальных анимированных открыток: падающие снежинки для Нового года, салюты на 9 Мая, летающие сердечки на День влюблённых, светящиеся звёзды на 8 Марта и многое другое. Каждая открытка — это отдельный веб-сайт с авторским дизайном.</div>
+            </div>
+            <div class="project-tech">
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Canvas</span>
+                <span>Анимации</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">✨</div>
+        </div>
+
+        <!-- 2 - СПИСОК ДЕЛ -->
+        <div class="project-card todolist" data-project="todolist">
+            <div class="project-img-placeholder"><i class="fas fa-list-check"></i></div>
+            <div class="project-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Список дел</h3>
+            <span class="project-tag">органайзер</span>
+            <p>Добавление, выполнение и удаление задач с категориями.</p>
+            <div class="project-details" id="details-todolist">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>JavaScript</li>
+                    <li>LocalStorage</li>
+                    <li>Управление состоянием</li>
+                    <li>Интерфейс</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Простой и удобный список дел: добавляй задачи, отмечай выполненные, удаляй ненужные. Все задачи сохраняются в браузере и не исчезают после перезагрузки страницы. Есть фильтрация по статусу: все, активные, выполненные.</div>
+            </div>
+            <div class="project-tech">
+                <span>JavaScript</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>LocalStorage</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">✓</div>
+        </div>
+
+        <!-- 3 - САЙТ ДЛЯ БИЗНЕСА ПО ТАХОГРАФАМ -->
+        <div class="project-card tachograph" data-project="tachograph">
+            <div class="project-img-placeholder"><i class="fas fa-truck"></i></div>
+            <div class="project-icon"><i class="fas fa-tachometer-alt"></i></div>
+            <h3>Сайт для бизнеса по тахографам</h3>
+            <span class="project-tag">реальный проект</span>
+            <p>Корпоративный сайт с каталогом, прайсом и формой заявки.</p>
+            <div class="project-details" id="details-tachograph">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>HTML/CSS</li>
+                    <li>JavaScript</li>
+                    <li>Адаптивная вёрстка</li>
+                    <li>SEO-оптимизация</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Полноценный сайт для компании по установке и обслуживанию тахографов. Включает каталог оборудования, прайс-лист, форму обратной связи, карту проезда и админ-панель для управления контентом.</div>
+            </div>
+            <div class="project-tech">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>PHP</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">车</div>
+        </div>
+
+        <!-- 4 - ПОДСЧЕТ ОТМЕТОК ЗА КОНТРОЛЬНУЮ -->
+        <div class="project-card grades" data-project="grades">
+            <div class="project-img-placeholder"><i class="fas fa-chart-bar"></i></div>
+            <div class="project-icon"><i class="fas fa-calculator"></i></div>
+            <h3>Подсчет отметок за контрольную</h3>
+            <span class="project-tag">для школы</span>
+            <p>Сколько 10, 9, 8... в классе? Мгновенный подсчёт.</p>
+            <div class="project-details" id="details-grades">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>JavaScript</li>
+                    <li>Обработка данных</li>
+                    <li>Статистика</li>
+                    <li>Интерфейс</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Приложение для классного руководителя: вводишь отметки учеников за контрольную работу — программа автоматически подсчитывает количество каждой отметки (10, 9, 8, 7, 6, 5, 4, 3, 2, 1), показывает успеваемость и качество знаний.</div>
+            </div>
+            <div class="project-tech">
+                <span>JavaScript</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Аналитика</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">学</div>
+        </div>
+
+        <!-- 5 - МУЗЫКАЛЬНЫЙ ПРОЕКТ -->
+        <div class="project-card song-card" data-project="music">
+            <div class="project-img-placeholder"><i class="fas fa-music"></i></div>
+            <div class="project-icon"><i class="fas fa-headphones"></i></div>
+            <h3>Песня «Life is beautiful»</h3>
+            <span class="project-tag">музыка</span>
+            <p>k-поп о красоте жизни.</p>
+
+            <div class="song-player-mini">
+                <audio controls preload="none" style="width:100%; height:36px; border-radius:20px; background:#2d1a14;">
+                    <source src="life is so beautiful.mp3" type="audio/mpeg">
+                    Ваш браузер не поддерживает аудиоплеер.
+                </audio>
+            </div>
+
+            <div class="song-link-inline">
+                <a href="https://suno.com/s/T0LEmPXK9OLQuxBQ" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Слушать на Suno
+                </a>
+            </div>
+
+            <div class="project-details" id="details-music">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Написание текстов</li>
+                    <li>Вокал</li>
+                    <li>Аранжировка</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Песня создана с помощью AI, текст авторский.</div>
+            </div>
+            <div class="project-tech">
+                <span>Suno AI</span>
+                <span>Автор текста</span>
+                <span>Инди-поп</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">乐</div>
+        </div>
+
+    </div>
+
+    <!-- ДОСТИЖЕНИЯ -->
+    <div class="achievements-section">
+        <div class="section-title">
+            <i class="fas fa-trophy"></i>
+            Мои достижения
+            <span class="deco-char">荣</span>
+        </div>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-medal"></i></div>
+                <div class="ach-content">
+                    <h4>Победитель районной научно-практической конференции</h4>
+                    <p>Проект «какаовела как основа субстрата для выращивания вешенки обыкновенной» — 2025</p>
+                    <span class="ach-tag">диплом I степени</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-award"></i></div>
+                <div class="ach-content">
+                    <h4>Победитель городской научно-практической конференции</h4>
+                    <p>Проект «исследование эффективности использования какаовеллы как основы субстрата по выращиванию вешенки обыкновенной» — 2025</p>
+                    <span class="ach-tag">диплом II степени</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-certificate"></i></div>
+                <div class="ach-content">
+                    <h4>Лучший пожератель тортиков</h4>
+                    <p>поедание на скорость — 2024</p>
+                    <span class="ach-tag">гран-при</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-star"></i></div>
+                <div class="ach-content">
+                    <h4>Грамота от Московского районного комитета ОО «БРСМ» г. Минска</h4>
+                    <p>за активную гражданскую позицию и вклад в реализацию общественно массовых инициатив</p>
+                    <span class="ach-tag">признание</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="ach-content">
+                    <h4>Участник республиканского этапа "100идей"</h4>
+                    <p>"промышленные и строительные технологии" — 2025-2026</p>
+                    <span class="ach-tag">конкурсы</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-microphone"></i></div>
+                <div class="ach-content">
+                    <h4>Песня «Life is beautiful»</h4>
+                    <p>Создание авторской песни с использованием AI-инструментов</p>
+                    <span class="ach-tag">творческий проект</span>
+                </div>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-icon"><i class="fas fa-certificate"></i></div>
+                <div class="ach-content">
+                    <h4>Получила сертификат о том, что закончила курс на ItMouse</h4>
+                    <p>«Разработка веб-сайтов с использованием HTML, CSS и JavaScript»</p>
+                    <span class="ach-tag">творческий проект</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ФУТЕР -->
+    <div class="footer-note">
+        <i class="fas fa-code"></i>  сделано с любовью к программированию · 2026
+        <i class="fas fa-heart" style="color: #c41e24;"></i>
+        <span class="deco-footer">龙 · 福</span>
+        <span style="margin-left: 1rem; color: #8b3a1f; font-weight: 500;">китайский стиль</span>
+    </div>
+
+</div>
+
+<script>
+    (function() {
+        // ===== ПЕРЕКЛЮЧЕНИЕ ТЕМ =====
+        const themeBtn = document.getElementById('themeToggle');
+        const themeLabel = document.getElementById('themeLabel');
+        const body = document.body;
+        const sakuraContainer = document.getElementById('sakuraContainer');
+        const spidermanContainer = document.getElementById('spidermanContainer');
+        const webLines = document.getElementById('webLines');
+        const footerDeco = document.querySelector('.footer-note .deco-footer');
+        const footerStyle = document.querySelector('.footer-note span:last-child');
+
+        let isMarvel = false;
+        let moveInterval = null;
+
+        // ===== ФУНКЦИЯ ХАОТИЧНОГО ПЕРЕМЕЩЕНИЯ ПАУКА =====
+        function moveSpider() {
+            if (!spidermanContainer || !spidermanContainer.classList.contains('active')) return;
+
+            const padding = 60;
+            const maxX = window.innerWidth - padding;
+            const maxY = window.innerHeight - padding;
+
+            let randomX, randomY;
+
+            if (Math.random() < 0.3) {
+                const corners = [
+                    { x: padding * 0.5, y: padding * 0.5 },
+                    { x: maxX - padding * 0.3, y: padding * 0.5 },
+                    { x: padding * 0.5, y: maxY - padding * 0.3 },
+                    { x: maxX - padding * 0.3, y: maxY - padding * 0.3 }
+                ];
+                const corner = corners[Math.floor(Math.random() * corners.length)];
+                randomX = corner.x + (Math.random() - 0.5) * 120;
+                randomY = corner.y + (Math.random() - 0.5) * 120;
+            } else {
+                randomX = Math.random() * maxX;
+                randomY = Math.random() * maxY;
+            }
+
+            randomX = Math.max(padding * 0.2, Math.min(maxX - padding * 0.2, randomX));
+            randomY = Math.max(padding * 0.2, Math.min(maxY - padding * 0.2, randomY));
+
+            spidermanContainer.style.left = randomX + 'px';
+            spidermanContainer.style.top = randomY + 'px';
+            spidermanContainer.style.bottom = 'auto';
+            spidermanContainer.style.right = 'auto';
+
+            const randomRotate = (Math.random() - 0.5) * 20;
+            spidermanContainer.style.transform = `scale(1) rotate(${randomRotate}deg)`;
+            setTimeout(() => {
+                if (spidermanContainer && spidermanContainer.classList.contains('active')) {
+                    spidermanContainer.style.transform = 'scale(1) rotate(0deg)';
+                }
+            }, 900);
+        }
+
+        function startSpiderMovement() {
+            if (moveInterval) {
+                clearInterval(moveInterval);
+                moveInterval = null;
+            }
+            setTimeout(() => { moveSpider(); }, 1500);
+            moveInterval = setInterval(moveSpider, 30000);
+        }
+
+        function stopSpiderMovement() {
+            if (moveInterval) {
+                clearInterval(moveInterval);
+                moveInterval = null;
+            }
+            if (spidermanContainer) {
+                spidermanContainer.style.transform = 'scale(1) rotate(0deg)';
+            }
+        }
+
+        function setTheme(marvel) {
+            isMarvel = marvel;
+            if (marvel) {
+                body.classList.add('marvel-theme');
+                themeLabel.textContent = 'Marvel тема';
+                document.querySelector('.theme-btn i:first-child').className = 'fas fa-bolt';
+                document.querySelector('.theme-btn i:last-child').className = 'fas fa-dragon';
+                if (sakuraContainer) sakuraContainer.style.opacity = '0';
+                if (spidermanContainer) {
+                    spidermanContainer.classList.add('active');
+                    spidermanContainer.style.left = '20px';
+                    spidermanContainer.style.bottom = '30px';
+                    spidermanContainer.style.top = 'auto';
+                    spidermanContainer.style.right = 'auto';
+                    spidermanContainer.style.transform = 'scale(1) rotate(0deg)';
+                    startSpiderMovement();
+                }
+                if (webLines) webLines.classList.add('active');
+                if (footerDeco) footerDeco.textContent = '⚡ · ✦';
+                if (footerStyle) footerStyle.textContent = 'marvel стиль';
+                const avatar = document.querySelector('.avatar');
+                avatar.style.background = 'linear-gradient(145deg, #1a0a0a, #cc1111)';
+                avatar.style.borderColor = '#2a0a0a';
+                avatar.style.outlineColor = '#ff1a1a';
+                avatar.style.boxShadow = '0 0 40px rgba(255, 0, 0, 0.5), 0 0 80px rgba(26, 74, 255, 0.2)';
+                const chineseDeco = document.querySelector('.title-group h1 .chinese-deco');
+                chineseDeco.textContent = 'Marvel';
+                chineseDeco.style.fontFamily = "'Bangers', cursive";
+                document.querySelectorAll('.card-deco').forEach(el => {
+                    el.style.fontFamily = "'Bangers', cursive";
+                    el.textContent = '✦';
+                });
+                document.querySelectorAll('.section-title .deco-char').forEach(el => {
+                    el.style.fontFamily = "'Bangers', cursive";
+                    el.textContent = '⚡';
+                });
+                document.querySelector('.container::before').style.content = '"⚡"';
+                document.querySelector('.container::after').style.content = '"✦"';
+            } else {
+                body.classList.remove('marvel-theme');
+                themeLabel.textContent = 'Китайская тема';
+                document.querySelector('.theme-btn i:first-child').className = 'fas fa-dragon';
+                document.querySelector('.theme-btn i:last-child').className = 'fas fa-chevron-circle-right';
+                if (sakuraContainer) sakuraContainer.style.opacity = '1';
+                if (spidermanContainer) {
+                    spidermanContainer.classList.remove('active');
+                    stopSpiderMovement();
+                }
+                if (webLines) webLines.classList.remove('active');
+                if (footerDeco) footerDeco.textContent = '龙 · 福';
+                if (footerStyle) footerStyle.textContent = 'китайский стиль';
+                const avatar = document.querySelector('.avatar');
+                avatar.style.background = '#2d1a14';
+                avatar.style.borderColor = '#3d1a1a';
+                avatar.style.outlineColor = '#8b2a2a';
+                avatar.style.boxShadow = '0 12px 28px rgba(180, 30, 30, 0.4)';
+                const chineseDeco = document.querySelector('.title-group h1 .chinese-deco');
+                chineseDeco.textContent = '吉罗';
+                chineseDeco.style.fontFamily = "'Ma Shan Zheng', cursive";
+                document.querySelectorAll('.card-deco').forEach((el, i) => {
+                    el.style.fontFamily = "'Ma Shan Zheng', cursive";
+                    const decos = ['✨', '✓', '车', '学', '乐'];
+                    el.textContent = decos[i % decos.length];
+                });
+                document.querySelectorAll('.section-title .deco-char').forEach(el => {
+                    el.style.fontFamily = "'Ma Shan Zheng', cursive";
+                    el.textContent = '作';
+                });
+                document.querySelector('.container::before').style.content = '"福"';
+                document.querySelector('.container::after').style.content = '"龙"';
+            }
+        }
+
+        themeBtn.addEventListener('click', function(e) {
+            setTheme(!isMarvel);
+        });
+
+        // ===== КЛИК ПО КАРТОЧКАМ =====
+        const cards = document.querySelectorAll('.project-card');
+
+        cards.forEach(card => {
+            const details = card.querySelector('.project-details');
+            if (!details) return;
+
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('audio') || e.target.closest('.song-link-inline') || e.target.closest('a')) {
+                    return;
+                }
+
+                const isOpen = details.classList.contains('open');
+                document.querySelectorAll('.project-details.open').forEach(openDetail => {
+                    if (openDetail !== details) {
+                        openDetail.classList.remove('open');
+                    }
+                });
+                if (isOpen) {
+                    details.classList.remove('open');
+                } else {
+                    details.classList.add('open');
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            const isCard = e.target.closest('.project-card');
+            if (!isCard) {
+                document.querySelectorAll('.project-details.open').forEach(d => d.classList.remove('open'));
+            }
+        });
+
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.addEventListener('error', function(e) {
+                console.log('Ошибка загрузки аудио. Пожалуйста, используйте ссылку на Suno.');
+            });
+        });
+
+        // ===== САКУРА =====
+        function createSakura() {
+            const container = document.getElementById('sakuraContainer');
+            if (!container) return;
+            const petalCount = 35;
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                const size = 12 + Math.random() * 18;
+                petal.style.width = size + 'px';
+                petal.style.height = size + 'px';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = 8 + Math.random() * 12 + 's';
+                petal.style.animationDelay = Math.random() * 15 + 's';
+                petal.style.opacity = 0.3 + Math.random() * 0.4;
+                const hue = 340 + Math.random() * 20;
+                petal.style.background = `hsl(${hue}, 70%, 75%)`;
+                petal.style.boxShadow = `0 0 12px rgba(255, 180, 190, 0.3)`;
+                container.appendChild(petal);
+            }
+        }
+
+        createSakura();
+
+        // ===== ПРИ ЗАГРУЗКЕ СТРАНИЦЫ — КИТАЙСКАЯ ТЕМА =====
+        setTheme(false);
+
+        // ===== ОБНОВЛЕНИЕ ПРИ ИЗМЕНЕНИИ РАЗМЕРА ОКНА =====
+        window.addEventListener('resize', function() {
+            if (isMarvel && spidermanContainer && spidermanContainer.classList.contains('active')) {
+                const padding = 60;
+                const maxX = window.innerWidth - padding;
+                const maxY = window.innerHeight - padding;
+                let currentLeft = parseFloat(spidermanContainer.style.left);
+                let currentTop = parseFloat(spidermanContainer.style.top);
+                if (isNaN(currentLeft)) currentLeft = 20;
+                if (isNaN(currentTop)) currentTop = 30;
+                if (currentLeft > maxX) currentLeft = maxX - 20;
+                if (currentTop > maxY) currentTop = maxY - 20;
+                if (currentLeft < 0) currentLeft = 0;
+                if (currentTop < 0) currentTop = 0;
+                spidermanContainer.style.left = currentLeft + 'px';
+                spidermanContainer.style.top = currentTop + 'px';
+            }
+        });
+    })();
+</script>
+
+</body>
+</html>
