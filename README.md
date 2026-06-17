@@ -8,7 +8,11 @@
 
 Вся информация обо мне, моих навыках и проектах собрана на моем персональном сайте. Заходите, чтобы увидеть мои работы в действии!
 
-[![Посетить мой сайт](https://img.shields.io/badge/%D0%9F%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C_%D0%BC%D0%BE%D0%B8_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B-8A2BE2?style=for-the-badge&logo=google-chrome&logoColor=white)](https://girodash19-cell.github.io/-/)
+<p align="center">
+  <a href="https://girodash19-cell.github.io/-/" target="_blank">
+    <img src="https://img.shields.io/badge/🌐_ПОСМОТРЕТЬ_МОИ_РАБОТЫ-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=FF4757&color=FF6B6B" alt="Посмотреть мои работы" width="400">
+  </a>
+</p>
 
 ---
 
@@ -38,8 +42,8 @@
 
 ## 🏆 Мои достижения
 
-*   **🥇 Победитель районной НПК** (проект по биотехнологии, 2025)
-*   **🥈 Победитель городской НПК** (проект по биотехнологии, 2025)
+*   **🥇 Победитель районной научно-практической конференции** (проект по биологии, 2025)
+*   **🥈 Победитель городской научно-практической конференции** (проект по биологии, 2025)
 *   **🏅 Грамота от Минского районного комитета БРСМ** (за активную гражданскую позицию)
 *   **🎶 Участник "100 идей"** и создатель авторской песни с помощью AI
 
@@ -49,9 +53,9 @@
 
 Я открыта для новых знакомств, предложений и интересных проектов. Свяжитесь со мной любым удобным способом:
 
-*   **Сайт-портфолио:** [https://girodash19-cell.github.io/-/](https://girodash19-cell.github.io/-/)
-*   **Email:** [Ваш email] *(Добавьте, если хотите)*
-*   **Telegram:** [Ваш ник в Telegram] *(Добавьте, если хотите)*
+*   **🌐 Сайт-портфолио:** [https://girodash19-cell.github.io/-/](https://girodash19-cell.github.io/-/)
+*   **📧 Email:** [girodash19@gmail.com](mailto:girodash19@gmail.com)
+*   **💬 Telegram:** [@smileGD14](https://t.me/smileGD14)
 
 ---
 
