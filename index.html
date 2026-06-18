@@ -1110,6 +1110,14 @@
             background-blend-mode: overlay;
         }
 
+        /* ===== ПРОЕКТ — ИГРОВОЙ ПОРТАЛ ХОГВАРТС ===== */
+        .project-card.hogwarts .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="50,10 90,40 75,90 25,90 10,40" fill="%23c41e24" opacity="0.08"/><circle cx="50" cy="50" r="15" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
         /* ===== ПРОЕКТ — САЙТЫ-ОТКРЫТКИ С АНИМАЦИЯМИ ===== */
         .project-card.postcards .project-img-placeholder {
             background: linear-gradient(145deg, #2d1a14, #1f1814);
@@ -1716,7 +1724,7 @@
             <div class="subhead">
                 <span><i class="fas fa-graduation-cap"></i> Курсы · 2026</span>
                 <span><i class="fas fa-map-pin"></i> Минск</span>
-                <span><i class="fas fa-code"></i> 5+ проектов</span>
+                <span><i class="fas fa-code"></i> 6+ проектов</span>
             </div>
             <div class="contact-links">
                 <a href="#"><i class="fab fa-github"></i> girodash19-cell/-</a>
@@ -1735,6 +1743,33 @@
     </div>
 
     <div class="projects-grid" id="projectsGrid">
+
+        <!-- НОВЫЙ ПРОЕКТ: ИГРОВОЙ ПОРТАЛ ХОГВАРТС -->
+        <div class="project-card hogwarts" data-project="hogwarts" onclick="window.open('https://girodash19-cell.github.io/game-on-phone/', '_blank')">
+            <div class="project-img-placeholder"><i class="fas fa-hat-wizard"></i></div>
+            <div class="project-icon"><i class="fas fa-hat-wizard"></i></div>
+            <h3>Игровой портал Хогвартс</h3>
+            <span class="project-tag">игровой · js</span>
+            <p>Сборник игр в стиле Гарри Поттера.</p>
+            <div class="project-details" id="details-hogwarts">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>JavaScript</li>
+                    <li>Игровая логика</li>
+                    <li>CSS-стилизация</li>
+                    <li>Адаптивный дизайн</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Пять игр в одном портале: мемори с магическими символами, крестики-нолики с ИИ, угадай число, сортировка жидкостей по пробиркам и шашки. Есть музыка, анимации и тёмная тема.</div>
+            </div>
+            <div class="project-tech">
+                <span>JavaScript</span>
+                <span>CSS</span>
+                <span>HTML</span>
+                <span>Игровой дизайн</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-external-link-alt"></i> открыть проект</div>
+            <div class="card-deco">⚡</div>
+        </div>
 
         <!-- 1 - САЙТЫ-ОТКРЫТКИ С АНИМАЦИЯМИ -->
         <div class="project-card postcards" data-project="postcards">
@@ -2099,7 +2134,7 @@
                 chineseDeco.style.fontFamily = "'Ma Shan Zheng', cursive";
                 document.querySelectorAll('.card-deco').forEach((el, i) => {
                     el.style.fontFamily = "'Ma Shan Zheng', cursive";
-                    const decos = ['✨', '✓', '车', '学', '乐'];
+                    const decos = ['⚡', '✨', '✓', '车', '学', '乐'];
                     el.textContent = decos[i % decos.length];
                 });
                 document.querySelectorAll('.section-title .deco-char').forEach(el => {
@@ -2123,6 +2158,9 @@
             if (!details) return;
 
             card.addEventListener('click', function(e) {
+                // Если клик по карточке с игровым порталом — не мешаем открытию ссылки
+                if (this.dataset.project === 'hogwarts') return;
+
                 if (e.target.closest('audio') || e.target.closest('.song-link-inline') || e.target.closest('a')) {
                     return;
                 }
