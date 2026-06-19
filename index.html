@@ -911,7 +911,7 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
+            cursor: default;
         }
 
         .project-card::before {
@@ -1091,6 +1091,47 @@
             opacity: 0.6;
         }
 
+        /* ===== КНОПКА ПЕРЕХОДА В ПРОЕКТЕ ===== */
+        .project-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #c41e24;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.8rem;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            margin-top: 0.2rem;
+            align-self: flex-start;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        .project-link-btn:hover {
+            background: #a0181e;
+            transform: scale(1.04);
+            box-shadow: 0 0 20px rgba(196, 30, 36, 0.4);
+        }
+
+        .project-link-btn i {
+            font-size: 0.7rem;
+        }
+
+        body.marvel-theme .project-link-btn {
+            background: #ff1a1a;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        body.marvel-theme .project-link-btn:hover {
+            background: #cc0000;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
+        }
+
         .project-img-placeholder {
             width: 100%;
             height: 80px;
@@ -1106,6 +1147,14 @@
             border: 1px solid #3d2a22;
             transition: background 0.3s;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L80,100 L0,100 Z" fill="%238b1a1a" opacity="0.08"/><circle cx="70" cy="30" r="15" fill="%23c41e24" opacity="0.08"/></svg>');
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+
+        /* ===== ПРОЕКТ — TELEGRAM БОТ ===== */
+        .project-card.telegram-bot .project-img-placeholder {
+            background: linear-gradient(145deg, #2d1a14, #1f1814);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="30" fill="%2326A5E4" opacity="0.12"/><path d="M35,50 L55,35 L65,55 L45,65 Z" fill="%2326A5E4" opacity="0.12"/><path d="M40,48 L60,45" stroke="%2326A5E4" stroke-width="4" opacity="0.12"/></svg>');
             background-size: cover;
             background-blend-mode: overlay;
         }
@@ -1724,7 +1773,7 @@
             <div class="subhead">
                 <span><i class="fas fa-graduation-cap"></i> Курсы · 2026</span>
                 <span><i class="fas fa-map-pin"></i> Минск</span>
-                <span><i class="fas fa-code"></i> 6+ проектов</span>
+                <span><i class="fas fa-code"></i> 7+ проектов</span>
             </div>
             <div class="contact-links">
                 <a href="#"><i class="fab fa-github"></i> girodash19-cell/-</a>
@@ -1744,13 +1793,50 @@
 
     <div class="projects-grid" id="projectsGrid">
 
-        <!-- НОВЫЙ ПРОЕКТ: ИГРОВОЙ ПОРТАЛ ХОГВАРТС -->
-        <div class="project-card hogwarts" data-project="hogwarts" onclick="window.open('https://girodash19-cell.github.io/game-on-phone/', '_blank')">
+        <!-- ПРОЕКТ: TELEGRAM БОТ -->
+        <div class="project-card telegram-bot" data-project="telegram">
+            <div class="project-img-placeholder"><i class="fab fa-telegram-plane"></i></div>
+            <div class="project-icon"><i class="fab fa-telegram-plane"></i></div>
+            <h3>Telegram-бот @pelengator19bot</h3>
+            <span class="project-tag">бот · python</span>
+            <p>Многофункциональный бот с интерактивными сценариями.</p>
+
+            <a href="https://t.me/pelengator19bot" target="_blank" class="project-link-btn">
+                <i class="fab fa-telegram-plane"></i> Открыть в Telegram
+            </a>
+
+            <div class="project-details" id="details-telegram">
+                <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
+                <ul>
+                    <li>Python</li>
+                    <li>aiogram</li>
+                    <li>Telegram API</li>
+                    <li>SQLite</li>
+                </ul>
+                <div class="extra-text"><i class="fas fa-info-circle"></i> Бот выполняет различные задачи: от простых команд до сложных сценариев взаимодействия. Реализована работа с базами данных, обработка callback-запросов, инлайн-клавиатуры и многоуровневые диалоги.</div>
+            </div>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>aiogram</span>
+                <span>Telegram API</span>
+                <span>SQLite</span>
+            </div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
+            <div class="card-deco">📱</div>
+        </div>
+
+        <!-- ПРОЕКТ: ИГРОВОЙ ПОРТАЛ ХОГВАРТС -->
+        <div class="project-card hogwarts" data-project="hogwarts">
             <div class="project-img-placeholder"><i class="fas fa-hat-wizard"></i></div>
             <div class="project-icon"><i class="fas fa-hat-wizard"></i></div>
             <h3>Игровой портал Хогвартс</h3>
             <span class="project-tag">игровой · js</span>
             <p>Сборник игр в стиле Гарри Поттера.</p>
+
+            <a href="https://girodash19-cell.github.io/game-on-phone/" target="_blank" class="project-link-btn">
+                <i class="fas fa-external-link-alt"></i> Открыть проект
+            </a>
+
             <div class="project-details" id="details-hogwarts">
                 <h4><i class="fas fa-graduation-cap"></i> Навыки</h4>
                 <ul>
@@ -1767,7 +1853,7 @@
                 <span>HTML</span>
                 <span>Игровой дизайн</span>
             </div>
-            <div class="click-hint"><i class="fas fa-external-link-alt"></i> открыть проект</div>
+            <div class="click-hint"><i class="fas fa-mouse-pointer"></i> подробнее</div>
             <div class="card-deco">⚡</div>
         </div>
 
@@ -2134,7 +2220,7 @@
                 chineseDeco.style.fontFamily = "'Ma Shan Zheng', cursive";
                 document.querySelectorAll('.card-deco').forEach((el, i) => {
                     el.style.fontFamily = "'Ma Shan Zheng', cursive";
-                    const decos = ['⚡', '✨', '✓', '车', '学', '乐'];
+                    const decos = ['📱', '⚡', '✨', '✓', '车', '学', '乐'];
                     el.textContent = decos[i % decos.length];
                 });
                 document.querySelectorAll('.section-title .deco-char').forEach(el => {
@@ -2150,7 +2236,7 @@
             setTheme(!isMarvel);
         });
 
-        // ===== КЛИК ПО КАРТОЧКАМ =====
+        // ===== КЛИК ПО КАРТОЧКАМ (раскрытие деталей) =====
         const cards = document.querySelectorAll('.project-card');
 
         cards.forEach(card => {
@@ -2158,10 +2244,8 @@
             if (!details) return;
 
             card.addEventListener('click', function(e) {
-                // Если клик по карточке с игровым порталом — не мешаем открытию ссылки
-                if (this.dataset.project === 'hogwarts') return;
-
-                if (e.target.closest('audio') || e.target.closest('.song-link-inline') || e.target.closest('a')) {
+                // Если клик по кнопке или ссылке — не раскрываем детали
+                if (e.target.closest('.project-link-btn') || e.target.closest('a') || e.target.closest('audio')) {
                     return;
                 }
 
